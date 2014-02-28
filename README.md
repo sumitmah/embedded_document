@@ -1,6 +1,5 @@
 # EmbeddedDocument
-
-TODO: Write a gem description
+Abstract away the smaller patterns that occur when using Embedded Document pattern. 
 
 ## Installation
 
@@ -18,7 +17,57 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+```
+class Item < EmbeddedDocument::Document
+end
+ 
+class Delivery < EmbeddedDocument::Document
+  key :shipDate, date, :ship_date
+  key :items, sequence_of(Item)
+end
+ 
+class Order < EmbeddedDocument::Document
+  key :deliveries, sequence_of(Delivery)
+  key :items, sequence_of(Item)
+ 
+  def quantity_for(a_product)
+    item = items.detect{|i| a_product == i.product}
+    item ? item.quantity : 0
+  end
+end
+ 
+order_hash = JSON.parse(
+  '{ "id": 1234,
+    "customer": "martin",
+    "items": [
+      {"product": "talisker", "quantity": 500},
+      {"product": "macallan", "quantity": 800},
+      {"product": "ledaig",   "quantity": 1100}
+    ],
+    "deliveries": [
+      { "id": 7722,
+        "shipDate": "2013-04-19",
+        "items": [
+          {"product": "talisker", "quantity": 300},
+          {"product": "ledaig",   "quantity": 500}
+        ]
+      },
+      { "id": 6533,
+        "shipDate": "2013-04-18",
+        "items": [
+          {"product": "talisker", "quantity": 200},
+          {"product": "ledaig",   "quantity": 300},
+          {"product": "macallan", "quantity": 300}
+        ]
+      }
+    ]
+  }'
+)
+ 
+order = Order.new(order_hash)
+p order.deliveries
+p order.quantity_for('talisker')
+```
 
 ## Contributing
 
@@ -27,3 +76,8 @@ TODO: Write usage instructions here
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
+
+## References
+
+1. Embedded Document pattern: (http://martinfowler.com/bliki/EmbeddedDocument.html)
+2. Easing the use of Embedded Document pattern: (http://missingfaktor.blogspot.in/2013/07/easing-use-of-embedded-document-pattern.html)
