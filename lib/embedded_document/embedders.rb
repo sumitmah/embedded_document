@@ -7,9 +7,5 @@ module EmbeddedDocument
     def datetime
       lambda { |x| DateTime.parse x }
     end
-
-    def defaulted
-      lambda
-    end
   end
 end
