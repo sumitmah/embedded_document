@@ -13,6 +13,10 @@ describe 'Embedder' do
     key :anyEmbedders, sequence_of(AnyEmbedder), :any_embedders
   end
 
+  class DefaultedEmbedderExample < EmbeddedDocument::Document
+    key :anyEmbedder, defaulted(identity, 0), :any_embedder
+  end
+
   it 'should return any_key value' do
     subject = AnyEmbedder.new({'anyKey' => 'anything'})
 
@@ -31,5 +35,17 @@ describe 'Embedder' do
 
     expect(subject.any_embedders).to be_a Array
     expect(subject.any_embedders.first).to be_a AnyEmbedder
+  end
+
+  it 'should return default value if key is nil' do
+    subject = DefaultedEmbedderExample.new({'anyEmbedder' => nil})
+
+    expect(subject.any_embedder).to eq(0)
+  end
+
+  it 'should return value if key is not nil' do
+    subject = DefaultedEmbedderExample.new({'anyEmbedder' => 'anything'})
+
+    expect(subject.any_embedder).to eq('anything')
   end
 end
