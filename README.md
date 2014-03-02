@@ -1,5 +1,8 @@
 # EmbeddedDocument
-Abstract away the smaller patterns that occur when using Embedded Document pattern. 
+
+A small utility with light-weight and composable abstractions, to ease the use of [Embedded Document](http://martinfowler.com/bliki/EmbeddedDocument.html) pattern in Ruby.
+
+The project currently only makes ideas from [`@missingfaktor`](github.com/missingfaktor)'s [blog post on the subject](http://missingfaktor.blogspot.in/2013/07/easing-use-of-embedded-document-pattern.html) available as a gem. We plan to build upon that work and add more features as we go forward.
 
 ## Installation
 
@@ -15,9 +18,9 @@ Or install it yourself as:
 
     $ gem install embedded_document
 
-## Usage
+## Example Usage
 
-```
+```ruby
 class Item < EmbeddedDocument::Document
 end
  
@@ -71,13 +74,8 @@ p order.quantity_for('talisker')
 
 ## Contributing
 
-1. Fork it ( http://github.com/<my-github-username>/embedded_document/fork )
+1. Fork it (http://github.com/sumitmah/embedded_document/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
-
-## References
-
-1. Embedded Document pattern: (http://martinfowler.com/bliki/EmbeddedDocument.html)
-2. Easing the use of Embedded Document pattern: (http://missingfaktor.blogspot.in/2013/07/easing-use-of-embedded-document-pattern.html)
+5. Create a new Pull Request

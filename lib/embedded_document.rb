@@ -20,7 +20,8 @@ module EmbeddedDocument
     end
 
     def method_missing name
-      return self.data[name.to_s] if self.data[name.to_s]
+      value = self.data[name.to_s]
+      return value unless value.nil?
       super name
     end
   end
