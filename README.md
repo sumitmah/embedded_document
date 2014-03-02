@@ -2,7 +2,7 @@
 
 A small utility with light-weight and composable abstractions, to ease the use of [Embedded Document](http://martinfowler.com/bliki/EmbeddedDocument.html) pattern in Ruby.
 
-The project currently only makes ideas from [`@missingfaktor`](github.com/missingfaktor)'s [blog post on the subject](http://missingfaktor.blogspot.in/2013/07/easing-use-of-embedded-document-pattern.html) available as a gem. We plan to build upon that work and add more features as we go forward.
+The project currently only makes ideas from [`@missingfaktor`](https://github.com/missingfaktor/)'s [blog post on the subject](http://missingfaktor.blogspot.in/2013/07/easing-use-of-embedded-document-pattern.html) available as a gem. We plan to build upon that work and add more features as we go forward.
 
 ## Installation
 
@@ -74,7 +74,7 @@ p order.quantity_for('talisker')
 
 ## Contributing
 
-1. Fork it (http://github.com/sumitmah/embedded_document/fork )
+1. Fork it (http://github.com/sumitmah/embedded_document/fork)
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
